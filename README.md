@@ -1,5 +1,5 @@
-# Employee DB
-
+# Employee DB 
+    
 ## Introduction
 You have been hired by a large staffing agency (Coders4Hire) to make modifications to their existing employee database application.  Right now the application holds some basic information on the employee, but it doesn't have any information on their work history. The current fields that it keeps track of are:
 * name
@@ -43,16 +43,21 @@ Then I should receive a 200 message and a payload that includes {jobID:2, EmpID:
 
 ```
 
-## Notes
-* If you feel an acceptance criteria is vague, then please ask the instructor for clarification as XP values human interaction over written requirements.
-* Be sure to use test driven design to guide your work. 
-* Be sure to commit after each passed test (you are evaluated on the number of commits you make).
-
 ## How to submit your work
 * Push to your cloned github repository.
 * Make a pull request back to the original master.
 
+
+## Useful APIs
+
+   Application Health: [https://employeebackendservice.cfapps.io/actuator/health](https://employeebackendservice.cfapps.io/actuator/health)
     
+   Application Swagger Doc: [https://employeebackendservice.cfapps.io/swagger-ui.html](https://employeebackendservice.cfapps.io/swagger-ui.html)
+   
+### Operations
+
+   Get All Employees: [https://employeebackendservice.cfapps.io/employees/all](https://employeebackendservice.cfapps.io/employees/all)
+      
     
 # Swagger UI for REST APIs
 
