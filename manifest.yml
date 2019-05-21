@@ -1,0 +1,5 @@
+name: SpringBootMySqlPersonal
+path: build/libs/employeedb-0.0.1-SNAPSHOT.jar
+memory: 800M
+services:
+  - mysqldb
