@@ -136,9 +136,75 @@ Then I should receive a 200 message and a payload that includes {jobID:2, EmpID:
 
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        }
     }
-}
     
+# Pivotal Cloud Foundry (Paas) - Deploy Service to the Cloud platform
+
+## references
+
+   [Deploying Spring Boot + MySQL Application to PCF](https://www.javainuse.com/pcf/pcf-sql)
+
+   [Spring Boot Application + MySQL + PCF](https://dzone.com/articles/spring-boot-20-microservice-deployment-in-pivotal)
     
+## Steps: 
+ 
+ ### PCF
+ 
+   1.  Check out the 1st commit of this Service.
+   
+   2.  Log IN to PCF.
+   
+   3.  Create Space.
+   
+   4.  Create User Service and Bind it that helps to create DB connection from PCF to local or whatever DB destination. If you can not do it from terminal then you can also do this step in PCF tool.
+       - Select ClearDB MySql 
+   
+ ### Service (Implementation)
+  
+   1.  Build simple and small application with very few configuration. make sure DB is also connected.
+   
+   2.  Create manifest.yml file with very few details. This is require since menifest file gets treated as blueprint of the application deployment in production environment.
+            
+                    name: SpringBootMySqlPersonal
+                    path: build/libs/employeedb-0.0.1-SNAPSHOT.jar
+                    memory: 800M
+                    services:
+                            - mysqldb
+                            
+   3.   Have all DB credentials and rest of the properties in application.properties file
+        
+                        spring.datasource.url=jdbc:mysql://localhost/avengers_gmdb?serverTimezone=UTC
+                        #spring.datasource.url=jdbc:mysql://localhost/bootdb?serverTimezone=UTC
+                        spring.datasource.username=root
+                        spring.datasource.password=
+                        spring.datasource.initialize=false
+                        spring.jpa.hibernate.ddl-auto=update
+                        spring.jpa.generate-ddl=true
+                        spring.jpa.database-platform=org.hibernate.dialect.MySQL57Dialect
+                        spring.datasource.platform=mysql
+                        spring.datasource.initialization-mode=always
+                        
+   4.    Make sure to run this command in Application terminal to bring jar file to run in production. Later this jar file will be use in manifest.yml/path as mentioned above. This will make PCF fetch the jar file of the application which will get executed in Production live:  
+    
+                gradlew clean build --refresh-dependencies
+   
+   5.   Make sure to Run the application locally healthy and all tests pass and then push it PCF.
+
+   6.   In terminal in application do: cf login
+   
+   7.   cf push <application name>
+                        
+                        
+  # Health Check  
+  
+  build.gradle
+  
+    //This will show us Health of our Application and DB connections
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+  
+   ## To show detailed Health check
+  
+    management.endpoint.health.show-details=always
     
  
