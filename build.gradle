@@ -25,5 +25,15 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //This will show us Health of our Application and DB connections
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+
+    //Swagger Config
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+
 }
 
