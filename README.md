@@ -44,7 +44,7 @@ Then I should receive a 200 message and a payload that includes {jobID:2, EmpID:
 ```
 
 ## How to submit your work
-* Push to your cloned github repository.
+* Fork and cloned github repository.
 * Make a pull request back to the original master.
 
 
@@ -57,8 +57,23 @@ Then I should receive a 200 message and a payload that includes {jobID:2, EmpID:
 ### Operations
 
    Get All Employees: [https://employeebackendservice.cfapps.io/employees/all](https://employeebackendservice.cfapps.io/employees/all)
-      
+   
+### Api Gateway Endpoint
+
+   [https://apigatewayservice.cfapps.io/employees/all](https://apigatewayservice.cfapps.io/employees/all)
+
+
+# Controller - @CrossOrigin
     
+   In this Employee service, we have added below config on top of the controller so then it can allow any host api calls to access these operations from any Angular Apps.
+  
+    @CrossOrigin(origins = "*", maxAge = 3600)
+    @RestController
+    @RequestMapping("/employee")
+    public class EmployeeController {
+    }
+
+
 # Swagger UI for REST APIs
 
    [Spring Boot RESTful API Documentation with Swagger 2](https://springframework.guru/spring-boot-restful-api-documentation-with-swagger-2/)
